@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import styles from "./App.module.css";
+import GlobalStyle from "./GlobalStyle.ts";
+import { Container } from "./AppStyle.ts";
 
 type Coin = {
     market: string;
     korean_name: string;
-
-}
+};
 
 function App() {
     const [coins, setCoins] = useState<Coin[]>([]);
@@ -25,19 +25,22 @@ function App() {
     }, []);
 
     return (
-        <div className={styles.container}>
-            <h1>업비트 코인 목록 ({coins.length}개)</h1>
-            <hr />
-            <select>
-                {coins.map((coin, index) => {
-                    return (
-                        <option key={index} value={coin.market}>
-                            {coin.korean_name} ({coin.market})
-                        </option>
-                    );
-                })}
-            </select>
-        </div>
+        <>
+            <GlobalStyle />
+            <Container>
+                <h1>업비트 코인 목록 ({coins.length}개)</h1>
+                <hr />
+                <select>
+                    {coins.map((coin, index) => {
+                        return (
+                            <option key={index} value={coin.market}>
+                                {coin.korean_name} ({coin.market})
+                            </option>
+                        );
+                    })}
+                </select>
+            </Container>
+        </>
     );
 }
 
