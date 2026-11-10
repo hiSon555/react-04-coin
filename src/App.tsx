@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 
+type Coin = {
+    market: string;
+    korean_name: string;
+
+}
+
 function App() {
-    const [coins, setCoins] = useState([]);
+    const [coins, setCoins] = useState<Coin[]>([]);
 
     useEffect(() => {
         fetch("https://api.upbit.com/v1/market/all")
